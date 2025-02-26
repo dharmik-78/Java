@@ -1,0 +1,40 @@
+package com.servlet;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "HelloForms", urlPatterns = { "/HelloForms" })
+public class HelloForm extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+	
+		//create cookie for firstname and lastname
+		
+		Cookie firstName = new Cookie("first_name", request.getParameter("first_name"));
+		Cookie lastName = new Cookie("first_name", request.getParameter("last_name"));
+		
+		
+		//set expiry date after 24 hours for both the cookies.
+		
+		firstName.setMaxAge(60*60*24);
+		lastName.setMaxAge(60*60*24);
+		
+		//Add both cookies in the response header.
+		
+		response.addCookie(firstName);
+		response.addCookie(lastName);
+		
+		
+		response.setContentType("text/html");
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+}

@@ -1,0 +1,12 @@
+127.0.0.1 - - [19/Feb/2025:10:45:23 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:45:32 +0530] "GET /JspDemo/Hello.jsp HTTP/1.1" 200 150
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:45:32 +0530] "GET /favicon.ico HTTP/1.1" 404 763
+127.0.0.1 - - [19/Feb/2025:10:46:48 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:46:49 +0530] "GET /JspDemo/Hello.html HTTP/1.1" 200 301
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:46:57 +0530] "GET /JspDemo/HelloForm?first_name=Dharmik&last_name=Khatsuriya HTTP/1.1" 200 318
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:47:38 +0530] "GET /JspDemo/HelloForm?first_name=Dharmik&last_name=Khatsuriya HTTP/1.1" 200 318
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:47:40 +0530] "GET /JspDemo/HelloForm?first_name=Dharmik&last_name=Khatsuriya HTTP/1.1" 200 318
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:47:40 +0530] "GET /JspDemo/HelloForm?first_name=Dharmik&last_name=Khatsuriya HTTP/1.1" 200 318
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:55:25 +0530] "GET /JspDemo/Hello.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:10:55:37 +0530] "GET /JspDemo/HelloForm?first_name=Narayan&last_name=Bhadada HTTP/1.1" 200 315
+0:0:0:0:0:0:0:1 - - [19/Feb/2025:11:14:56 +0530] "GET /JspDemo/CheckBox HTTP/1.1" 404 772

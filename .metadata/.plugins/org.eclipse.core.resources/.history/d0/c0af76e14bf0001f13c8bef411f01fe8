@@ -1,0 +1,24 @@
+package Polymorphism;
+
+class Products {
+    // Method Overloading with different parameter data types
+    public int prod(int a, int b, int c) {
+        return a * b * c;
+    }
+
+    public double prod(double a, double b, double c) { // Renamed from "Prod" to "prod"
+        return a * b * c;
+    }
+}
+
+public class ChangeDatatype {
+    public static void main(String[] args) {
+        Products obj = new Products();  // Fixed class name from Product to Products
+
+        int prod1 = obj.prod(1, 2, 3);
+        System.out.println("Product of the integer values: " + prod1);
+
+        double prod2 = obj.prod(1.0, 3.2, 4.3); // Calling the overloaded method
+        System.out.println("Product of the double values: " + prod2);
+    }
+}

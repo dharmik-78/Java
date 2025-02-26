@@ -1,0 +1,38 @@
+package com.servlet;
+
+import java.util.Date;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+
+
+@WebServlet("/LogFilter")
+public class LogFilter extends HttpServlet {
+	
+	public void init(FilterConfig config) throws ServletException{
+		
+		String testParam = config.getInitParameter("test-param");
+		
+		System.out.println("Test Param: " + testParam);
+
+	}
+	
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws java.io.IOException, ServletException {
+		
+		String ipAddress = request.getRemoteAddr();
+		
+		System.out.println("IP " + ipAddress + ", Time " + new Date().toString());
+		
+		chain.doFilter(request, response);
+	}
+	
+	public void destroy() {
+		
+	}
+}

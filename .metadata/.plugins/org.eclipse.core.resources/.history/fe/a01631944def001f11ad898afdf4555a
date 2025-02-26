@@ -1,0 +1,51 @@
+package com.servlet;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet("/CheckBox")
+public class CheckBox extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		response.setContentType("text/html");
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
+		 PrintWriter out = response.getWriter();
+	      String title = "Reading Checkbox Data";
+	      String docType =
+	         "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
+
+	      out.println(docType +
+	    		  "<html>\n" +
+	    		  		"<head><title>" + title + "</title></head>\n" +
+					          "<body bgcolor = \"#f0f0f0\">\n" +
+					             "<h1 align = \"center\">" + title + "</h1>\n" +
+					             "<ul>\n" +
+					                  "  <li><b>  Math Flag : Name</b>: "
+					                  + request.getParameter("maths") + "\n" +
+					                  "  <li><b>  Physics Flag :  Name</b>: "
+					                  + request.getParameter("physics") + "\n" +
+					                  "  <li><b>  Chemistry  Flag : Name</b>: "
+					                  + request.getParameter("chemistry") + "\n" +
+					               "</ul>\n" +
+					            "</body>" +
+					         "</html>" 
+);
+	   }
+
+	   // Method to handle POST method request.
+	   public void doPost(HttpServletRequest request, HttpServletResponse response)
+	      throws ServletException, IOException {
+	      
+	      doGet(request, response);
+	   }
+	}

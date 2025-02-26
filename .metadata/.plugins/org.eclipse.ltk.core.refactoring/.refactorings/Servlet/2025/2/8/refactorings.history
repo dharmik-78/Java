@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Servlet/src/main/java/com/databaseaccess&apos; to &apos;DatabaseAccess&apos;" description="Rename resource &apos;databaseaccess&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/databaseaccess" name="DatabaseAccess" stamp="1740044130390" updateReferences="true"/>
+</session>

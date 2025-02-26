@@ -1,0 +1,13 @@
+package com.servlet;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+
+/**
+ * Servlet implementation class LogFilter
+ */
+@WebServlet("/LogFilter")
+public class LogFilter extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+}

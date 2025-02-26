@@ -1,0 +1,16 @@
+package InnerAndOuterClass;
+class OutClass {
+	  int x = 10;
+
+	  private class InClass {
+	    int y = 5;
+	  }
+	}
+
+	public class PrivateInnerEx {
+	  public static void main(String[] args) {
+	    OutClass myOuter = new OutClass();
+	    OutClass.InClass myInner = myOuter.new InClass();
+	    System.out.println(myIn.y + myOuter.x);
+	  }
+	}

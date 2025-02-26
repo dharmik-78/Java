@@ -1,0 +1,75 @@
+package com.itbulls.Dharmik;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Cart {
+    
+    private static final int DEFAULT_CART_CAPACITY = 100;
+    private static final int MONEY_SCALE = 2;
+    private static final double DEFAULT_TAX_RATE = 0.15;
+    private static final String DEFAULT_TAX_TYPE = "incomeTax";
+    private static final double DEFAULT_DISCOUNT_RATE = 0;
+    private static final String DEFAULT_DISCOUNT_NAME = "zeroDiscount";
+
+    private static final AtomicInteger cartCounter = new AtomicInteger(0);
+    private int id;
+    private int userId;
+    private BigDecimal totalNetPrice = BigDecimal.ZERO;
+    private BigDecimal totalGrossPrice = BigDecimal.ZERO;
+    private BigDecimal totalTax = BigDecimal.ZERO;
+    private Tax tax;
+    private Product[] products;
+    private int indexToAddNewProduct;
+    private Discount discount;
+
+    static {
+        System.out.println("cart.class is uploaded into JVM");
+    }
+
+    {
+        cartCounter.incrementAndGet();
+        userId = 1;
+        tax = new Tax(DEFAULT_TAX_TYPE, DEFAULT_TAX_RATE);
+        discount = new Discount(DEFAULT_DISCOUNT_NAME, DEFAULT_DISCOUNT_RATE);
+        products = new Product[DEFAULT_CART_CAPACITY]; // Initialize array
+    }
+
+    public Cart() {
+    }
+
+    public Cart(int id, int userId) {
+        this.id = id;
+        this.userId = userId;
+        products = new Product[DEFAULT_CART_CAPACITY]; // Ensure array is initialized
+    }
+
+    public void addProduct(Product product) {
+        if (product == null) {
+            return;
+        }
+        
+        // Ensure safe resizing
+        if (indexToAddNewProduct >= products.length) {
+            int newSize = Math.min(products.length * 2, Integer.MAX_VALUE - 8);
+            products = Arrays.copyOf(products, newSize);
+        }
+
+        products[indexToAddNewProduct++] = product;
+        calculateTotalNetPrice();
+        calculateTotalGrossPrice();
+    }
+
+    private void calculateTotalNetPrice() {
+        this.totalNetPrice = Arrays.stream(this.products)
+            .filter(product -> product != null && product.getPrice() != null) // Prevent null issues
+            .map(Product::getPrice)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private void calculateTotalGrossPrice() {
+        this.totalTax = this.totalNetPrice.multiply(BigDecimal.valueOf(DEFAULT_TAX_RATE));
+        this.totalGrossPrice = this.totalNetPrice.add(this.totalTax);
+    }
+}

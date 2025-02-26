@@ -1,0 +1,34 @@
+package inheritance;
+
+import java.io.*;
+
+// MULTILEVEL INHERITANCE
+
+class Ones {
+    public void print_greek() {
+        System.out.println("Dharmik");
+    }
+}
+
+class Twice extends Once {
+    public void print_lastgreek() {  
+        System.out.println("Dharmik");
+    }
+}
+
+// Missing class Three (Added)
+class Thrice extends Twice {
+    public void print_for() {
+        System.out.println("For");
+    }
+}
+
+public class Multilevel {
+    public static void main(String[] args) {
+        Three g = new Three();
+        
+        g.print_greek();       
+        g.print_for();         
+        g.print_lastgreek();   
+    }
+}

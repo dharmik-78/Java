@@ -1,0 +1,27 @@
+package inheritance;
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+	class First{
+		public void print_greek() {
+			System.out.println("Geeks");
+		}
+	}
+
+	class Second extends First{
+		public void print_for() { System.out.println("for");
+	}
+}	
+	
+	public class SIngleInheritance {
+
+		public static void main(String[] args) {
+			
+				Two g = new Two();
+				g.print_greek();
+				g.print_for();
+				g.print_greek();
+	}
+}

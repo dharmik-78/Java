@@ -1,0 +1,30 @@
+package Polymorphism;
+
+import java.io.*;
+
+
+class Products{
+	public int prod(int a, int b, int c)
+	{
+		int prod1 = a * b * c;
+		return prod1;
+	}
+	
+	public double Prod(double a, double b, double c) {
+		double prod2 = a * b * c;
+		return prod2;
+	}
+}
+
+public class ChangeDatatype {
+
+	public static void main(String[] args) {
+			Product obj = new Product();
+			
+			int prod1 = obj.prod(1, 2, 3);
+			System.out.println("Product of the integer value :" + prod1);
+			
+			double prod2 = obj.Prod(1.0, 3.2, 4.3);
+			System.out.println("Product of the three double value :" + prod2);
+	}
+}

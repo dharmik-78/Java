@@ -1,0 +1,22 @@
+package InnerAndOuterClass;
+
+class OuterClass {
+    int x = 10;
+
+    private class InnerClass {
+        int y = 5;
+    }
+
+    // Public method to access InnerClass
+    public int getInnerY() {
+        InnerClass inner = new InnerClass();
+        return inner.y;
+    }
+}
+
+public class PrivateInnerEx {
+    public static void main(String[] args) {
+        OuterClass myOuter = new OuterClass();
+        System.out.println(myOuter.getInnerY() + myOuter.x);
+    }
+}

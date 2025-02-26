@@ -1,0 +1,41 @@
+package inheritance;
+
+// MULTIPLE INHERITANCE USING INTERFACES
+
+interface One {
+    void printDharmik(); 
+} 
+
+interface Two {
+    void printAr();
+} 
+
+interface Three {
+    void printMik();
+}
+
+class Child implements One, Two, Three {  
+    @Override
+    public void printDharmik() {
+        System.out.println("Dharmik");
+    } 
+    
+    @Override
+    public void printAr() {
+        System.out.println("Ar");
+    }
+    
+    @Override
+    public void printMik() {
+        System.out.println("Mik");
+    }
+}
+
+public class Multiple {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.printDharmik();
+        c.printAr();
+        c.printMik();
+    }
+}

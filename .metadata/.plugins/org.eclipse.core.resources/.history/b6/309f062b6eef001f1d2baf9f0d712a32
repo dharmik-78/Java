@@ -1,0 +1,88 @@
+package com.servlet;
+
+import jakarta.servlet.ServletException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.*;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/DatabaseAccess")
+public class DatabaseAccess extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    // Database Credentials
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://localhost/test";
+    private static final String USER = "root"; 
+    private static final String PASS = "root"; 
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String title = "Database Result";
+
+        String docType = "<!DOCTYPE html>\n";
+        out.println(docType +
+                "<html>\n" +
+                "<head><title>" + title + "</title></head>\n" +
+                "<body bgcolor=\"#f0f0f0\">\n" +
+                "<h1 align=\"center\">" + title + "</h1>\n");
+
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            // Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+            // Open a connection
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            // Execute SQL query
+            stmt = conn.createStatement();
+            String sql = "SELECT id, first, last, age FROM Employees";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // Extract data from result set
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int age = rs.getInt("age");
+                String first = rs.getString("first");
+                String last = rs.getString("last");
+
+                // Display values
+                out.println("<p>ID: " + id + "<br>");
+                out.println("Age: " + age + "<br>");
+                out.println("First Name: " + first + "<br>");
+                out.println("Last Name: " + last + "</p>");
+            }
+
+            // Close ResultSet
+            rs.close();
+        } catch (SQLException se) {
+            se.printStackTrace();
+            out.println("<p>Error accessing database.</p>");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Clean-up environment
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se2) { /* Nothing we can do */ }
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+
+        out.println("</body></html>");
+        out.close();
+    }
+}
